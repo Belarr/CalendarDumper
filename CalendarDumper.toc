@@ -1,0 +1,4 @@
+## Interface: 11304
+## Title: CalendarDumper
+## SavedVariablesPerCharacter: CalendarHolidays, CalendarPVP
+CalendarDumper.lua
