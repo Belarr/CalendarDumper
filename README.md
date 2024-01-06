@@ -1,5 +1,5 @@
 # CalendarDumper
-Calendar Dumper addon for World of Warcraft that extracts localized calendar strings for each event
+Calendar Dumper addon for World of Warcraft WotLK that extracts localized calendar strings for each event for use in ClassicCalendar
 
 ---
 Use:
