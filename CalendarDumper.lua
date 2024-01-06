@@ -27,7 +27,7 @@ local function MyAddonCommands(msg, editbox)
 	local getMonthInfo = C_Calendar.GetMonthInfo();
 	if getMonthInfo["month"] == 1 and getMonthInfo["year"] == 2023 then
 		-- January/February
-		holidayInfo["DARKMOON_FAIRE_TB"] = dumpHoliday(0,1,2);
+		holidayInfo["DARKMOON_FAIRE_THUNDER_BLUFF"] = dumpHoliday(0,1,2);
 		holidayInfo["STRANGLETHORN_FISHING_EXTRAVAGANZA"] = dumpHoliday(0,15,2);
 		holidayInfo["LUNAR_FESTIVAL"] = dumpHoliday(0,20,1);
 		holidayInfo["LOVE_IS_IN_THE_AIR"] = dumpHoliday(1,6,2);
@@ -45,6 +45,7 @@ local function MyAddonCommands(msg, editbox)
 		print("Dumped April/May Holidays");
 	elseif getMonthInfo["month"] == 6 and getMonthInfo["year"] == 2023 then
 		-- June/July
+		holidayInfo["DARKMOON_FAIRE_ELWYNN_FOREST"] = dumpHoliday(0,4,1);
 		holidayInfo["MIDSUMMER_FIRE_FESTIVAL"] = dumpHoliday(0,21,1);
 		holidayInfo["FIREWORKS_SPECTACULAR"] = dumpHoliday(1,5,3);
 		print("Dumped June/July Holidays");
