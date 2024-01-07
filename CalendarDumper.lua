@@ -4,7 +4,7 @@ frame:RegisterEvent("PLAYER_LOGOUT") -- Fired when about to log out
 local localizationData = {}
 local holidayInfo = {}
 local pvpInfo = {}
-local formatOutput = "string" -- table or string
+local formatOutput = "table" -- table or string
 if Localization == nil then
 	Localization = {}
 end
@@ -37,11 +37,9 @@ function dumpHoliday(holidayType, holidayName, cmonthOffset, cmonthDay, cindex)
 		end
 	elseif formatOutput == "string" then
 		if holidayType == "H" then
-			table.insert(holidayInfo, ["L."..holidayName.."Name"] = holidayInfoData["name"])
-			table.insert(holidayInfo, ["L."..holidayName.."Description"] = holidayInfoData["description"])
+			table.insert(holidayInfo, {["L."..holidayName.."Name"] = holidayInfoData["name"], ["L."..holidayName.."Description"] = holidayInfoData["description"]})
 		elseif holidayType == "P" then
-			table.insert(pvpInfo, ["L."..holidayName.."Name"] = holidayInfoData["name"])
-			table.insert(pvpInfo, ["L."..holidayName.."Description"] = holidayInfoData["description"])
+			table.insert(pvpInfo, {["L."..holidayName.."Name"] = holidayInfoData["name"], ["L."..holidayName.."Description"] = holidayInfoData["description"]})
 		end
 	end
 end
