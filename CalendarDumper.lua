@@ -81,7 +81,7 @@ local function CalendarDumpCommands(msg, editbox)
 	C_Calendar.SetAbsMonth(2, 2023) -- February
 	dumpHoliday("P","AlteracValley",0,3,2) -- PVP Holiday (Only needed once)
 	dumpHoliday("H","LoveisintheAir",0,6,2)
-	if eventList == "wotlk" then dumpHoliday("P","IsleOfConquest",0,10,4) end -- PVP Holiday (Only needed once)
+	if eventList == "wotlk" then dumpHoliday("P","EyeOfTheStorm",0,10,4) end -- PVP Holiday (Only needed once)
 	print("Dumped February Holidays")
 
 	C_Calendar.SetAbsMonth(3, 2023) -- March
@@ -127,45 +127,6 @@ local function CalendarDumpCommands(msg, editbox)
 	
 	print("-------------------------------------")
 	print("Make sure to EXIT at this time (reload does not save changes)")
-	--[[
-	if getMonthInfo["month"] == 1 and getMonthInfo["year"] == 2023 then
-		-- January/February
-		dumpHoliday("H","DarkmoonFaireMulgore",0,1,2)
-		dumpHoliday("H","StranglethornFishingExtravaganza",0,15,2)
-		dumpHoliday("H","LunarFestival",0,20,1)
-		dumpHoliday("H","LoveisintheAir",1,6,2)
-		print("Dumped January/February Holidays")
-		
-		-- Dump PVP Holidays (ONLY NEEDED ONCE)
-		dumpHoliday("P","WarsongGulch",0,6,2)
-		dumpHoliday("P","ArathiBasin",0,13,1)	
-		dumpHoliday("P","AlteracValley",1,3,2)
-		print("Dumped PVP Holidays")
-	elseif getMonthInfo["month"] == 4 and getMonthInfo["year"] == 2023 then
-		-- April/May
-		dumpHoliday("H","Noblegarden",0,9,1)
-		dumpHoliday("H","ChildrensWeek",1,1,1)
-		print("Dumped April/May Holidays")
-	elseif getMonthInfo["month"] == 6 and getMonthInfo["year"] == 2023 then
-		-- June/July
-		dumpHoliday("H","DarkmoonFaireElwynn",0,4,1)
-		dumpHoliday("H","MidsummerFireFestival",0,21,1)
-		dumpHoliday("H","FireworksSpectacular",1,5,3)
-		print("Dumped June/July Holidays")
-	elseif getMonthInfo["month"] == 9 and getMonthInfo["year"] == 2023 then
-		-- September
-		dumpHoliday("H","HarvestFestival",0,26,1)
-		print("Dumped September Holidays")
-	elseif getMonthInfo["month"] == 10 and getMonthInfo["year"] == 2023 then
-		-- October
-		dumpHoliday("H","HallowsEnd",0,18,1)
-		print("Dumped October Holidays")
-	elseif getMonthInfo["month"] == 12 and getMonthInfo["year"] == 2023 then
-		-- December
-		dumpHoliday("H","WintersVeil", 0,15,1)
-		print("Dumped December Holidays")
-	end
-	]]--
 end
 
 SLASH_CALENDARDUMP1, SLASH_CALENDARDUMP2 = '/cd', '/calendardump'
