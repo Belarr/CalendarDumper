@@ -4,7 +4,10 @@ frame:RegisterEvent("PLAYER_LOGOUT") -- Fired when about to log out
 local localizationData = {}
 local holidayInfo = {}
 local pvpInfo = {}
+
 local formatOutput = "table" -- table or string
+local eventList = ""
+
 if Localization == nil then
 	Localization = {}
 end
@@ -50,17 +53,81 @@ function frame:OnEvent(event, arg1)
 	print("Current Language: "..getLocalString)
 	elseif event == "PLAYER_LOGOUT" then
 		--Save to SavedVariables
-		--CalendarHolidays = holidayInfo
-		--CalendarPVP = pvpInfo
 		Localization[getLocalString] = {["CalendarHolidays"] = holidayInfo, ["CalendarPVP"] = pvpInfo}
-		--Localization = localizationData
 	end
 end
 frame:SetScript("OnEvent", frame.OnEvent)
 
 -- Dump current VIEWED month and following 1 month holidays
-local function MyAddonCommands(msg, editbox)
+local function CalendarDumpCommands(msg, editbox)
+	if msg == 'wotlk' then
+		eventList = "wotlk"
+		print("Setting output to WotLK events")
+	else
+		print("Setting output to Classic events")
+	end
 	local getMonthInfo = C_Calendar.GetMonthInfo()
+	print("-------------------------------------")
+	C_Calendar.SetAbsMonth(1, 2023) -- January
+	dumpHoliday("H","DarkmoonFaireMulgore",0,1,2)
+	dumpHoliday("P","WarsongGulch",0,6,2) -- PVP Holiday (Only needed once)
+	dumpHoliday("P","ArathiBasin",0,13,1) -- PVP Holiday (Only needed once)
+	dumpHoliday("H","StranglethornFishingExtravaganza",0,15,2)
+	dumpHoliday("H","LunarFestival",0,20,1)
+	if eventList == "wotlk" then dumpHoliday("P","StrandOfTheAncients",0,20,2) end -- PVP Holiday (Only needed once)
+	if eventList == "wotlk" then dumpHoliday("P","IsleOfConquest",0,27,2) end -- PVP Holiday (Only needed once)
+	print("Dumped January Holidays")
+	
+	C_Calendar.SetAbsMonth(2, 2023) -- February
+	dumpHoliday("P","AlteracValley",0,3,2) -- PVP Holiday (Only needed once)
+	dumpHoliday("H","LoveisintheAir",0,6,2)
+	if eventList == "wotlk" then dumpHoliday("P","IsleOfConquest",0,10,4) end -- PVP Holiday (Only needed once)
+	print("Dumped February Holidays")
+
+	C_Calendar.SetAbsMonth(3, 2023) -- March
+	print("Dumped March Holidays")
+		
+	C_Calendar.SetAbsMonth(4, 2023) -- April
+	dumpHoliday("H","Noblegarden",0,9,1)
+	print("Dumped April Holidays")
+	
+	C_Calendar.SetAbsMonth(5, 2023) -- May
+	dumpHoliday("H","ChildrensWeek",0,1,1)
+	print("Dumped May Holidays")
+	
+	C_Calendar.SetAbsMonth(6, 2023) -- June
+	dumpHoliday("H","DarkmoonFaireElwynn",0,4,1)
+	dumpHoliday("H","MidsummerFireFestival",0,21,1)
+	print("Dumped June Holidays")
+	
+	C_Calendar.SetAbsMonth(7, 2023) -- July
+	dumpHoliday("H","FireworksSpectacular",0,5,3)
+	print("Dumped July Holidays")
+	
+	C_Calendar.SetAbsMonth(8, 2023) -- August
+	print("Dumped August Holidays")
+	
+	C_Calendar.SetAbsMonth(9, 2023) -- September
+	if eventList == "wotlk" then dumpHoliday("H","Brewfest",0,20,1) end
+	dumpHoliday("H","HarvestFestival",0,26,1)
+	print("Dumped September Holidays")
+
+	C_Calendar.SetAbsMonth(10, 2023) -- October
+	dumpHoliday("H","HallowsEnd",0,18,1)
+	print("Dumped October Holidays")
+	
+	C_Calendar.SetAbsMonth(11, 2023) -- November
+	if eventList == "wotlk" then dumpHoliday("H","DayOfTheDead",0,1,2) end
+	if eventList == "wotlk" then dumpHoliday("H","PilgrimsBounty",0,21,1) end
+	print("Dumped November Holidays")
+	
+	C_Calendar.SetAbsMonth(12, 2023) -- December
+	dumpHoliday("H","WintersVeil", 0,15,1)
+	print("Dumped December Holidays")
+	
+	print("-------------------------------------")
+	print("Make sure to EXIT at this time (reload does not save changes)")
+	--[[
 	if getMonthInfo["month"] == 1 and getMonthInfo["year"] == 2023 then
 		-- January/February
 		dumpHoliday("H","DarkmoonFaireMulgore",0,1,2)
@@ -77,7 +144,7 @@ local function MyAddonCommands(msg, editbox)
 	elseif getMonthInfo["month"] == 4 and getMonthInfo["year"] == 2023 then
 		-- April/May
 		dumpHoliday("H","Noblegarden",0,9,1)
-		dumpHoliday("H","ChildrensWeek",1,3,1)
+		dumpHoliday("H","ChildrensWeek",1,1,1)
 		print("Dumped April/May Holidays")
 	elseif getMonthInfo["month"] == 6 and getMonthInfo["year"] == 2023 then
 		-- June/July
@@ -98,8 +165,9 @@ local function MyAddonCommands(msg, editbox)
 		dumpHoliday("H","WintersVeil", 0,15,1)
 		print("Dumped December Holidays")
 	end
+	]]--
 end
 
 SLASH_CALENDARDUMP1, SLASH_CALENDARDUMP2 = '/cd', '/calendardump'
 
-SlashCmdList["CALENDARDUMP"] = MyAddonCommands
+SlashCmdList["CALENDARDUMP"] = CalendarDumpCommands

@@ -3,23 +3,11 @@ Calendar Dumper addon for World of Warcraft WotLK that extracts localized calend
 
 ---
 Use:
-Open Blizzard Calendar UI and go to relevent month and year, then run command /cd for each month below:
-
-**January 2023**
-
-**April 2023**
-  
-**June 2023**
-
-**September 2023**
-
-**October 2023**
-
-**December 2023**
+Log in and run /cd (classic|wotlk), then exit the game. Data will not save properly if you /reload.
 
 ---
 
-**Events it currently captures**
+**Events it captures for Classic**
 
 Holidays:
 - DarkmoonFaireElwynn
@@ -39,3 +27,15 @@ PVP Holidays:
 - WarsongGulch
 - ArathiBasin
 - AlteracValley
+
+**Additional events it captures for WotLK**
+
+Holidays:
+- Brewfest
+- DayOfTheDead
+- PilgrimsBounty
+
+PVP Holidays:
+- EyeOfTheStorm
+- IsleOfConquest
+- StrandOfTheAncients
