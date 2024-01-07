@@ -3,7 +3,7 @@ Calendar Dumper addon for World of Warcraft WotLK that extracts localized calend
 
 ---
 Use:
-Open Blizzard Calendar UI and go to relevent month and year, then run command /cd for each month below:
+Open Blizzard Calendar UI and go to relevent month and year, then run command /cd for each month below, repeat as necessary for each language.
 
 **January 2023**
 
