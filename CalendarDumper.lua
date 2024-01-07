@@ -126,6 +126,7 @@ local function CalendarDumpCommands(msg, editbox)
 	print("Dumped December Holidays")
 	
 	print("-------------------------------------")
+	print("Dumping complete!")
 	print("Make sure to EXIT at this time (reload does not save changes)")
 end
 
