@@ -1,4 +1,4 @@
 ## Interface: 30401
 ## Title: CalendarDumper
-## SavedVariablesPerCharacter: Localization
+## SavedVariablesPerCharacter: HolidayLocalization, DungeonLocalization
 CalendarDumper.lua
