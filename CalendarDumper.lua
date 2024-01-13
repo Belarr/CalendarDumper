@@ -4,12 +4,18 @@ frame:RegisterEvent("PLAYER_LOGOUT") -- Fired when about to log out
 local localizationData = {}
 local holidayInfo = {}
 local pvpInfo = {}
+local dungeonInfo = {}
+local raidInfo = {}
 
 local formatOutput = "table" -- table or string
 local eventList = ""
 
-if Localization == nil then
-	Localization = {}
+if HolidayLocalization == nil then
+	HolidayLocalization = {}
+end
+
+if DungeonLocalization == nil then
+	DungeonLocalization = {}
 end
 
 function dumpTable(table, depth)
@@ -47,13 +53,36 @@ function dumpHoliday(holidayType, holidayName, cmonthOffset, cmonthDay, cindex)
 	end
 end
 
+function dumpDungeons(dungeons)
+	for _, dungeon in next, dungeons do
+		local dungeonName = dungeon["title"]
+		if formatOutput == "table" then
+			dungeonInfo[dungeonName:gsub(' ', '')] = {["name"]=dungeonName}
+		elseif formatOutput == "string" then
+			table.insert(dungeonInfo, {["L."..dungeonName.."Name"] =dungeonName})
+		end
+	end
+end
+
+function dumpRaids(raids)
+	for _, raid in next, raids do
+		local raidName = raid["title"]
+		if formatOutput == "table" then
+			raidInfo[raidName:gsub(' ', '')] = {["name"]=raidName}
+		elseif formatOutput == "string" then
+			table.insert(raidInfo, {["L."..raidName.."Name"] =raidName})
+		end
+	end
+end
+
 function frame:OnEvent(event, arg1)
 	local getLocalString = tostring(GetLocale())
 	if event == "ADDON_LOADED" and arg1 == "CalendarDumper" then
 	print("Current Language: "..getLocalString)
 	elseif event == "PLAYER_LOGOUT" then
 		--Save to SavedVariables
-		Localization[getLocalString] = {["CalendarHolidays"] = holidayInfo, ["CalendarPVP"] = pvpInfo}
+		HolidayLocalization[getLocalString] = {["CalendarHolidays"] = holidayInfo, ["CalendarPVP"] = pvpInfo}
+		DungeonLocalization[getLocalString] = {["Dungeons"] = dungeonInfo, ["Raids"] = raidInfo}
 	end
 end
 frame:SetScript("OnEvent", frame.OnEvent)
@@ -124,7 +153,14 @@ local function CalendarDumpCommands(msg, editbox)
 	C_Calendar.SetAbsMonth(12, 2023) -- December
 	dumpHoliday("H","WintersVeil", 0,15,1)
 	print("Dumped December Holidays")
-	
+	print("-------------------------------------")
+
+	dumpRaids(C_Calendar.EventGetTextures(0))
+	print("Dumped raid names")
+
+	dumpDungeons(C_Calendar.EventGetTextures(1))
+	print("Dumped dungeon names")
+
 	print("-------------------------------------")
 	print("Dumping complete!")
 	print("Make sure to EXIT at this time (reload does not save changes)")
